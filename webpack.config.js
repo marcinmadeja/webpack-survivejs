@@ -49,4 +49,4 @@ module.exports = (env) => {
   }
 
   return developmentConfig();
-}
+};

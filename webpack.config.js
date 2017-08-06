@@ -25,16 +25,18 @@ const commonConfig = merge([
     ],
   },
   parts.lintJavaScript({ include: PATHS.app, options: { emitWarnings: false, failOnWarning: false, quiet: true } }),
-  parts.loadCSS(),
 ]);
 
-const productionConfig = merge([]);
+const productionConfig = merge([
+  parts.extractCSS({ use: 'css-loader' }),
+]);
 
 const developmentConfig = merge ([
   parts.devServer({
     host: process.env.HOST,
     port: process.env.PORT,
   }),
+  parts.loadCSS(),
 ]);
 
 module.exports = (env) => {

@@ -65,8 +65,8 @@ exports.extractCSS = ({ include, exclude, use }) => {
           exclude,
 
           use: plugin.extract({
-            use,
             fallback: 'style-loader',
+            use,
           }),
         },
       ],

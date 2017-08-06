@@ -1,3 +1,7 @@
 body {
   background: cornsilk;
 }
+
+.redButton {
+  background: red;
+}

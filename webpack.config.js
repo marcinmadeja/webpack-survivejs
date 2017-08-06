@@ -24,7 +24,7 @@ const commonConfig = merge([
       }),
     ],
   },
-  parts.lintJavaScript({ include: PATHS.app }),
+  parts.lintJavaScript({ include: PATHS.app, options: { emitWarnings: false, failOnWarning: false, quiet: true } }),
   parts.loadCSS(),
 ]);
 

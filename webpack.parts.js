@@ -1,4 +1,5 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const PurifyCSSPlugin = require('purifycss-webpack');
 
 exports.devServer = ({ host, port } = {}) => ({
   devServer: {
@@ -82,4 +83,11 @@ exports.autoprefix = () => ({
       require('autoprefixer')(),
     ]),
   },
+});
+
+// use after extractTextPlugin or it will not work
+exports.purifyCSS = ({ paths }) => ({
+  plugins: [
+    new PurifyCSSPlugin({ paths }),
+  ],
 });

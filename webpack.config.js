@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
 const glob = require('glob');
@@ -43,13 +42,6 @@ const productionConfig = merge([
     },
   },
   {
-    plugins: [
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor',
-      }),
-    ],
-  },
-  {
     output: {
       devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]',
     },
@@ -65,6 +57,11 @@ const productionConfig = merge([
       name: './images/[name].[ext]',
     },
   }),
+  parts.extractBundles([
+    {
+      name: 'vendor',
+    },
+  ]),
 ]);
 
 const developmentConfig = merge ([

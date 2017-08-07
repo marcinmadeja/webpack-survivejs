@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack');
 
@@ -170,4 +171,10 @@ exports.loadJavaScript = ({ include, exclude }) => ({
 
 exports.generateSourceMaps = ({ type }) => ({
   devtool: type,
+});
+
+exports.extractBundles = (bundles) => ({
+  plugins: bundles.map((bundle) => (
+    new webpack.optimize.CommonsChunkPlugin(bundle)
+  )),
 });

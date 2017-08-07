@@ -17,7 +17,7 @@ const commonConfig = merge([
     },
     output: {
       path: PATHS.build,
-      filename: '[name].js',
+      filename: './scripts/[name].js',
     },
     plugins: [
       new HtmlWebpackPlugin({
@@ -37,7 +37,7 @@ const productionConfig = merge([
   parts.loadImages({
     options: {
       limit: 15000,
-      name: '[name].[ext]',
+      name: './images/[name].[ext]',
     },
   }),
 ]);

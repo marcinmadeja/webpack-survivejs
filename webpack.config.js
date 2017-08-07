@@ -36,6 +36,12 @@ const commonConfig = merge([
 ]);
 
 const productionConfig = merge([
+  {
+    output: {
+      devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]',
+    },
+  },
+  parts.generateSourceMaps({ type: 'cheap-module-eval-source-map' }),  
   parts.extractCSS({ use: ['css-loader', parts.autoprefix()] }),
   parts.purifyCSS({
     paths: glob.sync(`${PATHS.app}**/*.js`, { nodir: true }),

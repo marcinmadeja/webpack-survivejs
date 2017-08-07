@@ -33,6 +33,7 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
+    "font-awesome": "^4.7.0",
     "purecss": "^1.0.0"
   }
 }

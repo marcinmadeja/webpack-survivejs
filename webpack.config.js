@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
 const glob = require('glob');
@@ -36,6 +37,18 @@ const commonConfig = merge([
 ]);
 
 const productionConfig = merge([
+  {
+    entry: {
+      vendor: ['react'],
+    },
+  },
+  {
+    plugins: [
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendor',
+      }),
+    ],
+  },
   {
     output: {
       devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]',

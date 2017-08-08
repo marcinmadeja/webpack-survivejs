@@ -37,11 +37,6 @@ const commonConfig = merge([
 
 const productionConfig = merge([
   {
-    entry: {
-      vendor: ['react'],
-    },
-  },
-  {
     output: {
       devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]',
     },
@@ -60,6 +55,12 @@ const productionConfig = merge([
   parts.extractBundles([
     {
       name: 'vendor',
+
+      minChunk: ({ resource }) => (
+        resource &&
+        resource.indexOf('node_modules') >= 0 &&
+        resource.match(/\.js$/)
+      ),
     },
   ]),
 ]);

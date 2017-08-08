@@ -3,5 +3,6 @@ export default (text = 'Hello world') => {
 
   element.className = 'fa fa-address-book';
   element.innerHTML = text;
+
   return element;
 };

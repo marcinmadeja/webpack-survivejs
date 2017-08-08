@@ -6,9 +6,6 @@ module.exports = {
     node: true,
   },
   extends: 'eslint:recommended',
-  parserOptions: {
-    sourceType: 'module',
-  },
   rules: {
     'comma-dangle': ['error', 'always-multiline'],
     indent: ['error', 2],
@@ -18,4 +15,10 @@ module.exports = {
     'no-unused-vars': ['warn'],
     'no-console': 0,
   },
+  parser: 'babel-eslint',
+  parserOptions: {
+    sourceType: 'module',
+    allowImportExportEverywhere: true,
+    'codeFrame': false
+  },   
 };

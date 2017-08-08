@@ -3,6 +3,11 @@ export default (text = 'Hello world') => {
 
   element.className = 'fa fa-address-book';
   element.innerHTML = text;
-
+  element.onclick = () => {
+    require.ensure([], (require) => {
+      element.textContent = require('./lazy').default;
+    });
+  };
+  
   return element;
 };

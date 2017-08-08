@@ -36,29 +36,22 @@ const commonConfig = merge([
   parts.loadJavaScript({ include: PATHS.app }),
 ]);
 
-const productionConfig = merge([
+const productionConfig = merge([ 
   {
     performance: {
       hints: 'warning', // 'error' or false are valid too
       maxEntrypointSize: 100000, // in bytes
       maxAssetSize: 450000, // in bytes
-    },
-  },  
-  {
-    output: {
-      devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]',
-    },
-  },
-  {
+    },    
     output: {
       chunkFilename: '[name].[chunkhash:8].js',
       filename: '[name].[chunkhash:8].js',
+      devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]',
     },
-  },
-  {
+    recordsPath: path.join(__dirname, 'records.json'),
     plugins: [
       new webpack.HashedModuleIdsPlugin(),
-    ],
+    ],    
   },
   parts.generateSourceMaps({ type: 'cheap-module-eval-source-map' }),  
   parts.extractCSS({ use: ['css-loader', parts.autoprefix()] }),
@@ -80,6 +73,10 @@ const productionConfig = merge([
         resource.indexOf('node_modules') >= 0 &&
         resource.match(/\.js$/)
       ),
+    },
+    {
+      name: 'manifest',
+      minChunk: Infinity,
     },
   ]),
   parts.clean(PATHS.build),

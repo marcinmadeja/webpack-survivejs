@@ -29,7 +29,7 @@ const commonConfig = merge([
   parts.lintCSS({ include: PATHS.app }),
   parts.loadFonts({
     options: {
-      name: './fonts/[name].[ext]',
+      name: './fonts/[name].[hash:8].[ext]',
     },
   }),
   parts.loadJavaScript({ include: PATHS.app }),
@@ -48,6 +48,12 @@ const productionConfig = merge([
       devtoolModuleFilenameTemplate: 'webpack:///[absolute-resource-path]',
     },
   },
+  {
+    output: {
+      chunkFilename: '[name].[chunkhash:8].js',
+      filename: '[name].[chunkhash:8].js',
+    },
+  },
   parts.generateSourceMaps({ type: 'cheap-module-eval-source-map' }),  
   parts.extractCSS({ use: ['css-loader', parts.autoprefix()] }),
   parts.purifyCSS({
@@ -56,7 +62,7 @@ const productionConfig = merge([
   parts.loadImages({
     options: {
       limit: 15000,
-      name: './images/[name].[ext]',
+      name: '[name].[hash:8].[ext]',
     },
   }),
   parts.extractBundles([

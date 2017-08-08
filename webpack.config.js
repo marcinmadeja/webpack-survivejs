@@ -64,6 +64,7 @@ const productionConfig = merge([
     },
   ]),
   parts.clean(PATHS.build),
+  parts.attachRevision(),
 ]);
 
 const developmentConfig = merge ([

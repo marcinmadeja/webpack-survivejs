@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
 const glob = require('glob');
@@ -53,6 +54,11 @@ const productionConfig = merge([
       chunkFilename: '[name].[chunkhash:8].js',
       filename: '[name].[chunkhash:8].js',
     },
+  },
+  {
+    plugins: [
+      new webpack.HashedModuleIdsPlugin(),
+    ],
   },
   parts.generateSourceMaps({ type: 'cheap-module-eval-source-map' }),  
   parts.extractCSS({ use: ['css-loader', parts.autoprefix()] }),
